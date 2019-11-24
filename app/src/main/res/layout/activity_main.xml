@@ -23,7 +23,7 @@
         android:layout_marginEnd="@dimen/container_dual_padding"
         android:background="@drawable/root_bg"
         android:elevation="10dp"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/txtMatchDate"

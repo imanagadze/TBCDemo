@@ -23,7 +23,7 @@ class MatchPresenter @Inject constructor(
             view?.populateTeam2(match.team2.teamName, match.team2.teamImage)
             view?.populateScore(
                 "${match.team1.score} : ${match.team2.score}",
-                "${match.matchTime}"
+                "${match.matchTime.toInt()}"
             )
             view?.populatePossession(match.team1.ballPosition, match.team2.ballPosition)
             view?.populateActions(getRVCollection(match.matchSummary.summaries.sortedBy { it.actionTime }))
