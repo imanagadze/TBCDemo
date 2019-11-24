@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import ge.tbc.tbcdemo.R
@@ -43,111 +45,75 @@ class ActionsAdapter : RecyclerView.Adapter<ActionsAdapter.ActionsViewHolder>() 
         else holder.itemView.ivCircle.visibility = View.GONE
 
         if (action.team1Action != null) {
-            holder.itemView.ivPlayer1.visibility = View.VISIBLE
-            holder.itemView.txtAction1.visibility = View.VISIBLE
-            holder.itemView.txtPlayer1.visibility = View.VISIBLE
-            holder.itemView.ivAction1.visibility = View.VISIBLE
-
-            when (action.team1Action.actionType) {
-                MatchActionType.GOAL -> {
-                    holder.itemView.ivPlayer1.loadIcon(
-                        (action.team1Action.action as GoalAction).player.playerImage ?: ""
-                    )
-                    if ((action.team1Action.action).goalType == GoalType.GOAL) {
-                        holder.itemView.ivAction1.setImageResource(R.drawable.ic_ball_green)
-                        holder.itemView.txtAction1.text = "${action.actionTime} Goals by"
-                    } else {
-                        holder.itemView.txtAction1.setTextColor(
-                            ContextCompat.getColor(
-                                holder.itemView.context,
-                                R.color.red_2
-                            )
-                        )
-                        holder.itemView.ivAction1.setImageResource(R.drawable.ic_ball_red)
-                        holder.itemView.txtAction1.text = "${action.actionTime} Own Goal"
-                    }
-                    holder.itemView.txtPlayer1.text = action.team1Action.action.player.playerName
-                }
-                MatchActionType.YELLOW_CARD, MatchActionType.RED_CARD -> {
-                    holder.itemView.ivPlayer1.loadIcon(
-                        (action.team1Action.action as CardAction).player.playerImage ?: ""
-                    )
-                    if (action.team1Action.actionType == MatchActionType.YELLOW_CARD)
-                        holder.itemView.ivAction1.setImageResource(R.drawable.ic_yellow_card)
-                    else
-                        holder.itemView.ivAction1.setImageResource(R.drawable.ic_red_card)
-                    holder.itemView.txtAction1.text = "${action.actionTime} Tripping"
-                    holder.itemView.txtPlayer1.text = action.team1Action.action.player.playerName
-                }
-                MatchActionType.SUBSTITUTION -> {
-                    holder.itemView.txtAction1.text = "${action.actionTime} Substitution"
-                    holder.itemView.ivSubPlayer1.visibility = View.VISIBLE
-                    holder.itemView.txtSubPlayer1.visibility = View.VISIBLE
-                    holder.itemView.txtPlayer1.text =
-                        (action.team1Action.action as SubstitutionAction).player1.playerName
-                    holder.itemView.txtSubPlayer1.text =
-                        action.team1Action.action.player2.playerName
-                    holder.itemView.ivPlayer1.loadIcon(
-                        action.team1Action.action.player1.playerImage ?: ""
-                    )
-                    holder.itemView.ivSubPlayer1.loadIcon(
-                        action.team1Action.action.player2.playerImage ?: ""
-                    )
-                }
-            }
+            populatePlayer(
+                holder.itemView.ivPlayer1, holder.itemView.txtAction1,
+                holder.itemView.txtPlayer1, holder.itemView.ivAction1,
+                holder.itemView.ivSubPlayer1, holder.itemView.txtSubPlayer1,
+                action.team1Action, action.actionTime
+            )
         }
         if (action.team2Action != null) {
-            holder.itemView.ivPlayer2.visibility = View.VISIBLE
-            holder.itemView.txtAction2.visibility = View.VISIBLE
-            holder.itemView.txtPlayer2.visibility = View.VISIBLE
-            holder.itemView.ivAction2.visibility = View.VISIBLE
 
-            when (action.team2Action.actionType) {
-                MatchActionType.GOAL -> {
-                    holder.itemView.ivPlayer1.loadIcon(
-                        (action.team2Action.action as GoalAction).player.playerImage ?: ""
-                    )
-                    if ((action.team2Action.action).goalType == GoalType.GOAL) {
-                        holder.itemView.ivAction2.setImageResource(R.drawable.ic_ball_green)
-                        holder.itemView.txtAction2.text = "${action.actionTime} Goals by"
-                    } else {
-                        holder.itemView.txtAction2.setTextColor(
-                            ContextCompat.getColor(
-                                holder.itemView.context,
-                                R.color.red_2
-                            )
+            populatePlayer(
+                holder.itemView.ivPlayer2, holder.itemView.txtAction2,
+                holder.itemView.txtPlayer2, holder.itemView.ivAction2,
+                holder.itemView.ivSubPlayer2, holder.itemView.txtSubPlayer2,
+                action.team2Action, action.actionTime
+            )
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun populatePlayer(
+        ivPlayer: ImageView,
+        txtAction: TextView,
+        txtPlayer: TextView,
+        ivAction: ImageView,
+        ivSubPlayer: ImageView,
+        txtSubPlayer: TextView,
+        teamAction: TeamAction,
+        actionTime: Int
+    ) {
+        ivPlayer.visibility = View.VISIBLE
+        txtAction.visibility = View.VISIBLE
+        txtPlayer.visibility = View.VISIBLE
+        ivAction.visibility = View.VISIBLE
+
+        when (teamAction.actionType) {
+            MatchActionType.GOAL -> {
+                ivPlayer.loadIcon((teamAction.action as GoalAction).player.playerImage ?: "")
+                if ((teamAction.action).goalType == GoalType.GOAL) {
+                    ivAction.setImageResource(R.drawable.ic_ball_green)
+                    txtAction.text = "${actionTime} Goals by"
+                } else {
+                    txtAction.setTextColor(
+                        ContextCompat.getColor(
+                            txtAction.context,
+                            R.color.red_2
                         )
-                        holder.itemView.ivAction2.setImageResource(R.drawable.ic_ball_red)
-                        holder.itemView.txtAction2.text = "${action.actionTime} Own Goal"
-                    }
-                    holder.itemView.txtPlayer2.text = action.team2Action.action.player.playerName
-                }
-                MatchActionType.YELLOW_CARD, MatchActionType.RED_CARD -> {
-                    holder.itemView.ivPlayer2.loadIcon(
-                        (action.team2Action.action as CardAction).player.playerImage ?: ""
                     )
-                    if (action.team2Action.actionType == MatchActionType.YELLOW_CARD)
-                        holder.itemView.ivAction2.setImageResource(R.drawable.ic_yellow_card)
-                    else
-                        holder.itemView.ivAction2.setImageResource(R.drawable.ic_red_card)
-                    holder.itemView.txtAction2.text = "${action.actionTime} Tripping"
-                    holder.itemView.txtPlayer2.text = action.team2Action.action.player.playerName
+                    ivAction.setImageResource(R.drawable.ic_ball_red)
+                    txtAction.text = "${actionTime} Own Goal"
                 }
-                MatchActionType.SUBSTITUTION -> {
-                    holder.itemView.txtAction2.text = "${action.actionTime} Substitution"
-                    holder.itemView.ivSubPlayer2.visibility = View.VISIBLE
-                    holder.itemView.txtSubPlayer2.visibility = View.VISIBLE
-                    holder.itemView.txtPlayer2.text =
-                        (action.team2Action.action as SubstitutionAction).player1.playerName
-                    holder.itemView.txtSubPlayer2.text =
-                        action.team2Action.action.player2.playerName
-                    holder.itemView.ivPlayer2.loadIcon(
-                        action.team2Action.action.player1.playerImage ?: ""
-                    )
-                    holder.itemView.ivSubPlayer2.loadIcon(
-                        action.team2Action.action.player2.playerImage ?: ""
-                    )
-                }
+                txtPlayer.text = teamAction.action.player.playerName
+            }
+            MatchActionType.YELLOW_CARD, MatchActionType.RED_CARD -> {
+                ivPlayer.loadIcon((teamAction.action as CardAction).player.playerImage ?: "")
+                if (teamAction.actionType == MatchActionType.YELLOW_CARD)
+                    ivAction.setImageResource(R.drawable.ic_yellow_card)
+                else
+                    ivAction.setImageResource(R.drawable.ic_red_card)
+                txtAction.text = "${actionTime} Tripping"
+                txtPlayer.text = teamAction.action.player.playerName
+            }
+            MatchActionType.SUBSTITUTION -> {
+                txtAction.text = "${actionTime} Substitution"
+                ivSubPlayer.visibility = View.VISIBLE
+                txtSubPlayer.visibility = View.VISIBLE
+                txtPlayer.text = (teamAction.action as SubstitutionAction).player1.playerName
+                txtSubPlayer.text = teamAction.action.player2.playerName
+                ivPlayer.loadIcon(teamAction.action.player1.playerImage ?: "")
+                ivSubPlayer.loadIcon(teamAction.action.player2.playerImage ?: "")
             }
         }
     }
