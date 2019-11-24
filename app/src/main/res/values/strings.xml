@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TBC Demo</string>
+
+    <string name="ball_possession">Ball Possession</string>
+</resources>

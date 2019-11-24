@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_2"
+    tools:context=".presentation.match.MatchActivity">
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="@dimen/container_padding" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/container_dual_padding"
+        android:layout_marginTop="@dimen/container_dual_padding"
+        android:layout_marginEnd="@dimen/container_dual_padding"
+        android:background="@drawable/root_bg"
+        android:elevation="10dp"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/txtMatchDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/container_medium_padding"
+            android:layout_marginEnd="@dimen/container_padding"
+            android:textColor="@color/green"
+            android:textSize="@dimen/small_text_size"
+            app:layout_constraintEnd_toStartOf="@id/txtStadiumName"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtStadiumName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_2"
+            app:layout_constraintBaseline_toBaselineOf="@id/txtMatchDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/txtMatchDate"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivStart1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@id/ivTeam1Icon"
+            app:layout_constraintEnd_toStartOf="@id/ivTeam1Icon"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ivTeam1Icon" />
+
+        <ImageView
+            android:id="@+id/ivTeam1Icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/container_dual_padding"
+            android:contentDescription="@null"
+            app:layout_constraintEnd_toStartOf="@id/txtScore"
+            app:layout_constraintStart_toEndOf="@id/ivStart1"
+            app:layout_constraintTop_toBottomOf="@id/txtMatchDate" />
+
+        <TextView
+            android:id="@+id/txtTeam1Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/container_small_padding"
+            android:textColor="@color/black"
+            android:textSize="@dimen/standard_text_size"
+            app:layout_constraintEnd_toEndOf="@id/ivTeam1Icon"
+            app:layout_constraintStart_toStartOf="@id/ivTeam1Icon"
+            app:layout_constraintTop_toBottomOf="@id/ivTeam1Icon" />
+
+        <TextView
+            android:id="@+id/txtScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/big_text_size"
+            app:layout_constraintBottom_toBottomOf="@id/ivTeam1Icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ivTeam1Icon" />
+
+        <TextView
+            android:id="@+id/txtTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/container_small_padding"
+            android:textColor="@color/grey_2"
+            android:textSize="@dimen/standard_text_size"
+            app:layout_constraintEnd_toEndOf="@id/txtScore"
+            app:layout_constraintStart_toStartOf="@id/txtScore"
+            app:layout_constraintTop_toBottomOf="@id/txtScore" />
+
+        <ImageView
+            android:id="@+id/ivStart2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@id/ivTeam2Icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/ivTeam2Icon"
+            app:layout_constraintTop_toTopOf="@id/ivTeam2Icon" />
+
+        <ImageView
+            android:id="@+id/ivTeam2Icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/container_dual_padding"
+            android:contentDescription="@null"
+            app:layout_constraintEnd_toStartOf="@id/ivStart2"
+            app:layout_constraintStart_toEndOf="@id/txtScore"
+            app:layout_constraintTop_toBottomOf="@id/txtMatchDate" />
+
+        <TextView
+            android:id="@+id/txtTeam2Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/container_small_padding"
+            android:textColor="@color/black"
+            android:textSize="@dimen/standard_text_size"
+            app:layout_constraintEnd_toEndOf="@id/ivTeam2Icon"
+            app:layout_constraintStart_toStartOf="@id/ivTeam2Icon"
+            app:layout_constraintTop_toBottomOf="@id/ivTeam2Icon" />
+
+        <TextView
+            android:id="@+id/txtBallPossessionLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/container_medium_padding"
+            android:text="@string/ball_possession"
+            android:textColor="@color/grey_1"
+            android:textSize="@dimen/standard_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtTeam1Name" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clBallPossession"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/container_dual_padding"
+            android:layout_marginTop="@dimen/container_medium_padding"
+            android:layout_marginEnd="@dimen/container_dual_padding"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtBallPossessionLabel">
+
+            <View
+                android:id="@+id/viewBall2"
+                android:layout_width="0dp"
+                android:layout_height="5dp"
+                android:layout_marginStart="@dimen/container_padding"
+                android:background="@drawable/team2_ball_poss_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/viewBall1"
+                android:layout_width="0dp"
+                android:layout_height="5dp"
+                android:background="@drawable/team1_ball_poss_bg"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/txtBallPossession1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:textColor="@color/grey_2"
+            android:textSize="@dimen/standard_text_size"
+            app:layout_constraintBaseline_toBaselineOf="@id/txtBallPossessionLabel"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/txtBallPossession2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:textColor="@color/grey_2"
+            android:textSize="@dimen/standard_text_size"
+            app:layout_constraintBaseline_toBaselineOf="@id/txtBallPossessionLabel"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvActions"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/container_medium_padding"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clBallPossession" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
