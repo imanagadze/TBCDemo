@@ -2,7 +2,6 @@ package ge.tbc.tbcdemo.presentation.match
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import ge.tbc.tbcdemo.R
